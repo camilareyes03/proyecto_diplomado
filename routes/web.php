@@ -31,3 +31,9 @@ Route::resource('personas', 'App\Http\Controllers\UserController')->middleware('
 
 Route::get('/clientes', 'App\Http\Controllers\UserController@clientes')->name('clientes.index');
 Route::get('/administradores', 'App\Http\Controllers\UserController@administradores')->name('administradores.index');
+/**
+ * Rutas para el CRUD de categorias
+ */
+Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
+Route::get('/categoria/pdf', 'App\Http\Controllers\CategoriaController@generarPdf')->name('categoria.pdf');
+Route::get('/categoria/csv', 'App\Http\Controllers\CategoriaController@generarCsv')->name('categoria.csv');
