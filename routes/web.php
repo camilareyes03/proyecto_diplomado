@@ -26,3 +26,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('personas', 'App\Http\Controllers\UserController')->middleware('auth');
+
+Route::get('/clientes', 'App\Http\Controllers\UserController@clientes')->name('clientes.index');
+Route::get('/administradores', 'App\Http\Controllers\UserController@administradores')->name('administradores.index');
