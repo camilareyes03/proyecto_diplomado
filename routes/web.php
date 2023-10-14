@@ -26,3 +26,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+/**
+ * Rutas para el CRUD de categorias
+ */
+Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
+Route::get('/categoria/pdf', 'App\Http\Controllers\CategoriaController@generarPdf')->name('categoria.pdf');
+Route::get('/categoria/csv', 'App\Http\Controllers\CategoriaController@generarCsv')->name('categoria.csv');
