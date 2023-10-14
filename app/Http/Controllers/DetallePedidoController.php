@@ -88,7 +88,10 @@ class DetallePedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validarDetallePedido($request);
+        $this->validate($request, [
+            'producto_id' => 'required|exists:producto,id',
+            'cantidad' => 'required|numeric|min:1',
+        ]);
 
         $detalle = DetallePedido::findOrFail($id);
         $nuevaCantidad = $request->input('cantidad');

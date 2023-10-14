@@ -29,11 +29,13 @@ Route::middleware([
 });
 
 Route::resource('pedidos', 'App\Http\Controllers\PedidoController')->middleware('auth');
+Route::get('/proforma', 'App\Http\Controllers\PedidoController@proforma')->name('pedidos.proforma')->middleware('auth');
 Route::resource('detallepedido', 'App\Http\Controllers\DetallePedidoController')->middleware('auth');
+Route::get('/cargar-productos-por-categoria/{categoria}', 'App\Http\Controllers\PedidoController@cargarProductosPorCategoria');
 
 Route::resource('personas', 'App\Http\Controllers\UserController')->middleware('auth');
-Route::get('/clientes', 'App\Http\Controllers\UserController@clientes')->name('clientes.index');
-Route::get('/administradores', 'App\Http\Controllers\UserController@administradores')->name('administradores.index');
+Route::get('/clientes', 'App\Http\Controllers\UserController@clientes')->name('clientes.index')->middleware('auth');
+Route::get('/administradores', 'App\Http\Controllers\UserController@administradores')->name('administradores.index')->middleware('auth');
 
 Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
 Route::resource('productos', 'App\Http\Controllers\ProductoController')->middleware('auth');

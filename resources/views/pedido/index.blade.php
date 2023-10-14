@@ -5,8 +5,6 @@
 @section('content_header')
     @if (Request::is('proforma*'))
         <h1>Listado de Proformas</h1>
-    @elseif (Request::is('oficial*'))
-        <h1>Listado de Pedidos Oficiales</h1>
     @else
         <h1>Listado de Pedidos</h1>
     @endif
@@ -294,7 +292,5 @@
             });
         });
     </script>
-
-
 
 @stop
