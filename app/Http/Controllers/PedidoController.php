@@ -27,6 +27,16 @@ class PedidoController extends Controller
         return $this->renderPedidoIndex($pedidos);
     }
 
+     /**
+     * Muestra la página de índice de pedidos de tipo "Oficial".
+     */
+    public function oficial()
+    {
+        $pedidos = Pedido::where('tipo_pedido', 'oficial')->get();
+        return $this->renderPedidoIndex($pedidos);
+    }
+
+
     /**
      * Muestra la página de creación de pedidos.
      */

@@ -5,6 +5,8 @@
 @section('content_header')
     @if (Request::is('proforma*'))
         <h1>Listado de Proformas</h1>
+    @elseif (Request::is('oficial*'))
+        <h1>Listado de Pedidos Oficiales</h1>
     @else
         <h1>Listado de Pedidos</h1>
     @endif
@@ -41,6 +43,7 @@
                     <td>{{ $pedido->total }}</td>
                     <td>
                         <form class="formulario-eliminar" action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST">
+
 
                             <a href="{{ route('detallepedido.show', $pedido->id) }}" class="btn btn-info">
                                 <i class="fas fa-eye"></i>

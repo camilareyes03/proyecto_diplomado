@@ -30,6 +30,7 @@ Route::middleware([
 
 Route::resource('pedidos', 'App\Http\Controllers\PedidoController')->middleware('auth');
 Route::get('/proforma', 'App\Http\Controllers\PedidoController@proforma')->name('pedidos.proforma')->middleware('auth');
+Route::get('/oficial', 'App\Http\Controllers\PedidoController@oficial')->name('pedidos.oficial');
 Route::resource('detallepedido', 'App\Http\Controllers\DetallePedidoController')->middleware('auth');
 Route::get('/cargar-productos-por-categoria/{categoria}', 'App\Http\Controllers\PedidoController@cargarProductosPorCategoria');
 
