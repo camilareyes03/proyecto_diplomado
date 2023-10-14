@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Pedidos - App',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => 'Pedidos - App',
+    'logo_img' => "https://i.pinimg.com/564x/5c/61/84/5c61840474f5e4f69ca6a03507c2a569.jpg",
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => "https://i.pinimg.com/564x/5c/61/84/5c61840474f5e4f69ca6a03507c2a569.jpg",
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,11 +109,11 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => "https://i.pinimg.com/564x/5c/61/84/5c61840474f5e4f69ca6a03507c2a569.jpg",
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'width' => 80,
+            'height' => 80,
         ],
     ],
 
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -307,82 +307,128 @@ return [
             'text' => 'search',
         ],
         [
+            'text'    => 'Pedidos',
+            'icon'    => 'fa fa-shopping-cart',
+            'submenu' => [
+                [
+                    'text' => 'Lista de Pedidos',
+                    'url'  => '/pedidos',
+                    'icon' => 'fa fa-list',
+                ],
+                [
+                    'text' => 'Proformas',
+                    'url'  => '/proforma',
+                    'icon' => 'fa fa-file',
+                ],
+                [
+                    'text' => 'Pedidos Oficiales',
+                    'url'  => '/oficial',
+                    'icon' => 'fas fa-file',
+                ],
+            ],
+        ],
+        [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+       /*  [
+            'text'        => 'Pedidos',
+            'url'         => '/pedidos',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text'        => 'Proformas',
+            'url'         => '/proforma',
+            'icon'        => 'far fa-fw fa-file',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'        => 'Pedidos Oficiales',
+            'url'         => '/oficial',
+            'icon'        => 'far fa-fw fa-file',
+        ], */
+        [
+            'text'    => 'Usuarios',
+            'icon'    => 'fas fa-users',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Lista de Usuarios',
+                    'url'  => '/personas',
+                    'icon' => 'fas fa-users',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Lista de Clientes',
+                    'url'  => '/clientes',
+                    'icon' => 'fas fa-user-circle',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Lista de Administradores',
+                    'url'  => '/administradores',
+                    'icon' => 'fas fa-user-circle',
                 ],
             ],
         ],
-        ['header' => 'labels'],
+
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'    => 'Productos',
+            'icon'    => 'fa fa-truck',
+            'submenu' => [
+                [
+                    'text' => 'Lista de Productos',
+                    'url'  => '/productos',
+                    'icon' => 'fa fa-list',
+                ],
+                [
+                    'text' => 'Registrar Producto',
+                    'url'  => '/productos/create',
+                    'icon' => 'fa fa-plus',
+                ],
+            ],
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'    => 'Categorias',
+            'icon'    => 'fa fa-cubes',
+            'submenu' => [
+                [
+                    'text' => 'Lista de Categorias',
+                    'url'  => '/categorias',
+                    'icon' => 'fa fa-list',
+                ],
+                [
+                    'text' => 'Registrar Categoria',
+                    'url'  => '/categorias/create',
+                    'icon' => 'fa fa-plus',
+                ],
+            ],
+        ],
+
+
+       /*  [
+            'text' => 'Usuarios',
+            'url'  => '/personas',
+            'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'Clientes',
+            'url'  => '/clientes',
+            'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Administradores',
+            'url'  => '/administradores',
+            'icon' => 'fas fa-fw fa-user',
+        ], */
+        /* [
+            'text' => 'Productos',
+            'url'  => '/productos',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Categorias',
+            'url'  => '/categorias',
+            'icon' => 'fas fa-fw fa-user',
+        ], */
+
     ],
 
     /*
