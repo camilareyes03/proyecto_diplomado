@@ -23,10 +23,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users';
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'ci',
+        'telefono',
+        'foto',
+        'razon_social',
     ];
 
     /**
@@ -58,4 +65,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    use HasFactory;
+
+    public function pedido_cliente()
+    {
+        return $this->hasMany(Pedido::class, 'cliente_id');
+    }
+
+    public function ubicacion()
+    {
+        return $this->hasMany(Ubicacion::class, 'cliente_id');
+    }
 }

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');  //cambiar
+    return view('welcome');  //cambiar
 });
 
 Route::middleware([
@@ -27,7 +27,13 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
 Route::resource('pedidos', 'App\Http\Controllers\PedidoController')->middleware('auth');
 Route::resource('detallepedido', 'App\Http\Controllers\DetallePedidoController')->middleware('auth');
 
+Route::resource('personas', 'App\Http\Controllers\UserController')->middleware('auth');
+Route::get('/clientes', 'App\Http\Controllers\UserController@clientes')->name('clientes.index');
+Route::get('/administradores', 'App\Http\Controllers\UserController@administradores')->name('administradores.index');
+
+
+Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
+Route::resource('productos', 'App\Http\Controllers\ProductoController')->middleware('auth');

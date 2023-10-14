@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
+use App\Models\DetallePedido;
 use App\Models\Pedido;
+use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -103,9 +107,8 @@ class PedidoController extends Controller
     {
         $productos = Producto::all();
         $categorias = Categoria::all();
-        $reportes = $this->generarEnlacesReportes($pedidos);
 
-        return view('pedido.index', compact('reportes', 'productos', 'pedidos', 'categorias'));
+        return view('pedido.index', compact( 'productos', 'pedidos', 'categorias'));
     }
 
 

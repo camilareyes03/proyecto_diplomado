@@ -43,13 +43,6 @@
                     <td>{{ $pedido->total }}</td>
                     <td>
                         <form class="formulario-eliminar" action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST">
-                            <a href="{{ route('pedido.pdf', ['id' => $pedido->id]) }}" class="btn btn-danger">
-                                <i class="fas fa-file-pdf"></i>
-                            </a>
-
-                            <a  href="{{ route('pedido.csv', ['id' => $pedido->id]) }}" class= "btn btn-success">
-                                <i class="fas fa-file-csv"></i>
-                            </a>
 
                             <a href="{{ route('detallepedido.show', $pedido->id) }}" class="btn btn-info">
                                 <i class="fas fa-eye"></i>
