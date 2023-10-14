@@ -8,5 +8,4 @@
     <div style="background-color: #a9a8a8; color: #000000;"class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
     {{ $slot }}
 </div>
-
 </div>
