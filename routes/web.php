@@ -43,3 +43,13 @@ Route::prefix('ubicaciones')->middleware('auth')->group(function () {
 });
 
 Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
+/**
+ * Rutas para el CRUD de categorias
+ */
+Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
+
+
+/*
+ * Rutas para el CRUD de productos
+*/
+Route::resource('productos', 'App\Http\Controllers\ProductoController')->middleware('auth');
