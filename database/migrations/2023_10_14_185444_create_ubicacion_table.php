@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('ubicacion', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 100);
+            $table->string('referencia')->nullable();
+            $table->string('link')->nullable();
+            $table->double('latitud');
+            $table->double('longitud');
+
+            $table->unsignedBigInteger("cliente_id");
+            $table->foreign('cliente_id')->on('users')->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }

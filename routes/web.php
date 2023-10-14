@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UbicacionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,16 @@ Route::resource('personas', 'App\Http\Controllers\UserController')->middleware('
 Route::get('/clientes', 'App\Http\Controllers\UserController@clientes')->name('clientes.index');
 Route::get('/administradores', 'App\Http\Controllers\UserController@administradores')->name('administradores.index');
 
-
 Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
 Route::resource('productos', 'App\Http\Controllers\ProductoController')->middleware('auth');
+
+
+Route::prefix('ubicaciones')->middleware('auth')->group(function () {
+    Route::get('{cliente_id}', [UbicacionController::class, 'index'])->name('ubicaciones.index');
+    Route::get('create/{cliente_id}', [UbicacionController::class, 'create'])->name('ubicaciones.create');
+    Route::post('store/{cliente_id}', [UbicacionController::class, 'store'])->name('ubicaciones.store');
+    Route::get('edit/{ubicacion_id}', [UbicacionController::class, 'edit'])->name('ubicaciones.edit');
+    Route::put('update/{ubicacion_id}', [UbicacionController::class, 'update'])->name('ubicaciones.update');
+    Route::delete('destroy/{ubicacion_id}', [UbicacionController::class, 'destroy'])->name('ubicaciones.destroy');
+});
+
