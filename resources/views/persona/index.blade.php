@@ -15,6 +15,8 @@
 @section('content')
     <a style="background-color: rgb(1, 130, 5); border: 1px solid rgb(1, 130, 5);" href="personas/create"
         class="btn btn-primary ">Registrar</a>
+    <a href="{{ $pdfRoute }}" class="btn btn-danger"> <i class="fas fa-file-pdf"></i></a>
+    <a href="{{ $csvRoute }}" class="btn btn-success"><i class="fa fa-file-excel"></i></a>
 
     <br> <br>
     <table id="personas" class="table table-striped table-bordered" style="width: 100%">

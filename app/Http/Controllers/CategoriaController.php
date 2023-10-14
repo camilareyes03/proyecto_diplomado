@@ -16,7 +16,9 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        return view('categoria.index', compact('categorias',));
+        $pdfRoute = route('categoria.pdf');
+        $csvRoute = route('categoria.csv');
+        return view('categoria.index', compact('categorias', 'pdfRoute','csvRoute'));
     }
 
 /**
@@ -90,6 +92,48 @@ class CategoriaController extends Controller
             'descripcion.required' => 'El campo descripcion es obligatorio.',
         ]);
     }
+/**
+     * Generar PDF
+     */
+    public function generarPdf()
+    {
+        $categorias = Categoria::all();
+        $dompdf = new Dompdf();
 
+        $html = View::make('categoria.pdf', compact('categorias'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        return $dompdf->stream("Categorias.pdf");
+    }
+
+   /**
+    * Generar CSV
+    */
+    public function generarCsv()
+    {
+        $categorias = Categoria::all();
+        $csvData = '';
+        $csvHeader = ['ID', 'Nombre', 'Descripcion'];
+        $csvData .= implode(',', $csvHeader) . "\n";
+        foreach ($categorias as $categoria) {
+            $csvRow = [
+                $categoria->id,
+                $categoria->nombre,
+                $categoria->descripcion
+            ];
+            $csvData .= implode(',', $csvRow) . "\n";
+        }
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=Categorias.csv',
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0',
+        ];
+        $response = new Response($csvData, 200, $headers);
+        return $response;
+    }
 
 }

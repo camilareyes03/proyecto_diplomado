@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
 use App\Models\DetallePedido;
 use App\Models\Pedido;
 use App\Models\Producto;
+use App\Models\Categoria;
 use App\Models\User;
+use Dompdf\Dompdf;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class PedidoController extends Controller
 {
@@ -123,8 +126,9 @@ class PedidoController extends Controller
     {
         $productos = Producto::all();
         $categorias = Categoria::all();
+        $reportes = $this->generarEnlacesReportes($pedidos);
 
-        return view('pedido.index', compact( 'productos', 'pedidos', 'categorias'));
+        return view('pedido.index', compact( 'reportes','productos', 'pedidos', 'categorias'));
     }
 
 
@@ -298,6 +302,62 @@ class PedidoController extends Controller
     private function eliminarPedido(Pedido $pedido)
     {
         $pedido->delete();
+    }
+
+    public function descargarPdf($id)
+    {
+        $pedido = Pedido::find($id);
+
+        $pdf = new Dompdf();
+        $html = view('pedido.pdf', compact('pedido'))->render();
+        $pdf->loadHtml($html);
+        $pdf->render();
+
+        return $pdf->stream("pedido_{$id}.pdf");
+    }
+
+    public function descargarCsv($id)
+    {
+        $pedido = Pedido::find($id);
+        $detalles = $pedido->detallePedido;
+
+        $csvData = '';
+        $csvHeader = ['Producto', 'Cantidad', 'Monto'];
+        $csvData .= implode(',', $csvHeader) . "\n";
+        foreach ($detalles as $detalle) {
+            $csvRow = [
+                $detalle->producto->nombre,
+                $detalle->cantidad,
+                $detalle->monto,
+            ];
+            $csvData .= implode(',', $csvRow) . "\n";
+        }
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=pedido_{$id}_detalles.csv",
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0',
+        ];
+        $response = new Response($csvData, 200, $headers);
+
+        return $response;
+    }
+
+        /**
+    * Genera enlaces de descarga de PDF y CSV
+    *
+    */
+    private function generarEnlacesReportes($pedidos)
+    {
+        return $pedidos->map(function ($pedido) {
+            return [
+                'pedido' => $pedido,
+                'pdfRoute' => route('pedido.pdf', ['id' => $pedido->id]),
+                'csvRoute' => route('pedido.csv', ['id' => $pedido->id]),
+            ];
+        });
     }
 
 }

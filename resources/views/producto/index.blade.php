@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'Productos')
 
 @section('content_header')
     <h1>Listado de Productos</h1>
@@ -9,8 +9,10 @@
 @section('content')
     <a style="background-color: rgb(1, 130, 5); border: 1px solid rgb(1, 130, 5);" href="productos/create"
         class="btn btn-primary ">Registrar</a>
+    <a href="{{ $pdfRoute }}" class="btn btn-danger"> <i class="fas fa-file-pdf"></i></a>
+    <a href="{{ $csvRoute }}" class="btn btn-success"><i class="fa fa-file-excel"></i></a>
 
-        <br> <br>
+    <br> <br>
     <table id="productos" class="table table-striped table-bordered" style="width: 100%">
         <thead class="bg-primary text-white">
             <tr>

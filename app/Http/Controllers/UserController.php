@@ -15,19 +15,25 @@ class UserController extends Controller
     public function index()
     {
         $personas = User::all();
-        return view('persona.index', compact('personas'));
+        $pdfRoute = route('user.pdf', ['tipo' => 'todos']);
+        $csvRoute = route('user.csv', ['tipo' => 'todos']);
+        return view('persona.index', compact('personas', 'pdfRoute', 'csvRoute'));
     }
 
     public function clientes()
     {
         $personas = User::where('tipo_usuario', 'cliente')->get();
-        return view('persona.index', compact('personas'));
+        $pdfRoute = route('user.pdf', ['tipo' => 'cliente']);
+        $csvRoute = route('user.csv', ['tipo' => 'cliente']);
+        return view('persona.index', compact('personas', 'pdfRoute', 'csvRoute'));
     }
 
     public function administradores()
     {
         $personas = User::where('tipo_usuario', 'administrador')->get();
-        return view('persona.index', compact('personas'));
+        $pdfRoute = route('user.pdf', ['tipo' => 'administrador']);
+        $csvRoute = route('user.csv', ['tipo' => 'administrador']);
+        return view('persona.index', compact('personas', 'pdfRoute', 'csvRoute'));
     }
 
     /**
@@ -160,6 +166,62 @@ class UserController extends Controller
         }
         $persona->email = null;
         $persona->password = null;
+    }
+
+    /**
+     * Generar PDF de los usuarios
+     */
+
+    public function generarPdf($tipo)
+    {
+        if ($tipo === 'todos') {
+            $users = User::all();
+        } else {
+            $users = User::where('tipo_usuario', $tipo)->get();
+        }
+        $dompdf = new Dompdf();
+        $html = View::make('persona.pdf', compact('users'))->render();
+
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        return $dompdf->stream("listado_{$tipo}_usuarios.pdf");
+    }
+
+    /**
+     * Generar Csv de los usuarios
+     */
+    public function generarCsv($tipo)
+    {
+        if ($tipo === 'todos') {
+            $users = User::all();
+        } else {
+            $users = User::where('tipo_usuario', $tipo)->get();
+        }
+        $csvData = '';
+        $csvHeader = ['ID', 'Nombre Completo', 'Telefono', 'CI', 'Tipo de Usuario'];
+        $csvData .= implode(',', $csvHeader) . "\n";
+        foreach ($users as $user) {
+            $csvRow = [
+                $user->id,
+                $user->name,
+                $user->telefono,
+                $user->ci,
+                $user->tipo_usuario,
+            ];
+            $csvData .= implode(',', $csvRow) . "\n";
+        }
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=listado_' . $tipo . '_usuarios.csv',
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0',
+        ];
+
+        $response = new Response($csvData, 200, $headers);
+        return $response;
     }
 
 }
