@@ -31,5 +31,9 @@ Route::middleware([
  * Rutas para el CRUD de categorias
  */
 Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
-Route::get('/categoria/pdf', 'App\Http\Controllers\CategoriaController@generarPdf')->name('categoria.pdf');
-Route::get('/categoria/csv', 'App\Http\Controllers\CategoriaController@generarCsv')->name('categoria.csv');
+
+
+/*
+ * Rutas para el CRUD de productos
+*/
+Route::resource('productos', 'App\Http\Controllers\ProductoController')->middleware('auth');
