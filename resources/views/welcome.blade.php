@@ -25,11 +25,11 @@
         <nav>
             <img src={{ asset('welcome/img/logo6.png') }} class="logo">
             <ul>
-                <li><a href='#'>Home</a></li>
-                <li><a href={{route('login')}}>Log In</a></li>
+                <li><a href='#' style="color: black;">Home</a></li>
+                <li><a href={{route('login')}} style="color: black;">Log In</a></li>
             </ul>
-        </nav>
-        <div class="content" style="margin-top: 10%">
+        </nav>        
+        <div class="content" >
             <div class="text" style="display: inline-block">
                 <h1 class="aws2" style="overflow: hidden; font-size: 70px ">
                Bienvenido!
