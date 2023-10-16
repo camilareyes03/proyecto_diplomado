@@ -7,7 +7,7 @@
 	<link href={{ asset("welcome/homestyle.css") }} rel="stylesheet">
 
 </head>
-<body>
+<body >
     <audio controls autoplay loop style="position:fixed ; z-index: 9999; top:90% ; left: 39%">
         <source src="{{ asset('welcome/music/corona.mp3') }}" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
@@ -25,8 +25,8 @@
         <nav>
             <img src={{ asset('welcome/img/logo6.png') }} class="logo">
             <ul>
-                <li><a href='#' style="color: black;">Home</a></li>
-                <li><a href={{route('login')}} style="color: black;">Log In</a></li>
+                <li><a href='#' style="color: rgb(255, 255, 255);">Home</a></li>
+                <li><a href={{route('login')}} style="color: rgb(252, 247, 247);">Log In</a></li>
             </ul>
         </nav>        
         <div class="content" >

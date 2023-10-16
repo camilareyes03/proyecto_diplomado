@@ -6,7 +6,7 @@
   <link rel="stylesheet" href={{ asset('log-in/login.css') }}>
 
 </head>
-<body>
+<body background="{{ asset('welcome/img/logo5.jpg') }}">
 <!-- partial:index.partial.html -->
 <!DOCTYPE html>
 <html lang="en" >
@@ -88,8 +88,8 @@
     <nav>
         <img src={{ asset('welcome/img/logo5.png') }} class="logo">
         <ul>
-            <li style="margin-right: 20px;"><a href='/' style="color: black;">Home</a></li>
-            <li><a href='login' style="color: black;">Log In</a></li>
+            <li style="margin-right: 20px;"><a href='/' style="color: rgb(255, 255, 255);">Home</a></li>
+            <li><a href='login' style="color: rgb(255, 255, 255);">Log In</a></li>
         </ul>
     </nav>
 </div>

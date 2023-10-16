@@ -9,16 +9,12 @@
   background: #2D2F36;
 }
 body {
-  /* background: #180148; */
-  background-image: url('/welcome/img/logo1.jpg');
   height: 100%;
   width: 100%;
-  background-position: center top;
-  background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Inter UI', sans-serif;
-  /* margin: 0;
-  padding: 20px; */
+  margin: 0;
+  padding: 0;
 }
 .page {
   /* background: #180148; */
