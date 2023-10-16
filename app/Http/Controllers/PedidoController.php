@@ -184,11 +184,12 @@ class PedidoController extends Controller
             'cliente_id.required' => 'El campo Cliente es obligatorio.',
             'cliente_id.exists' => 'El Cliente seleccionado no es válido.',
             'tipo_pedido.required' => 'El campo Tipo de Pedido es obligatorio.',
-            'tipo_pedido.in' => 'El Tipo de Pedido debe ser "proforma" o "oficial.', // Nuevo mensaje para tipo_pedido
+            'tipo_pedido.in' => 'El Tipo de Pedido debe ser "proforma" o "oficial.',
         ];
 
         $request->validate($rules, $messages);
     }
+
 
     /**
     * Crea un nuevo objeto Pedido y lo almacena en la base de datos.
@@ -345,7 +346,7 @@ class PedidoController extends Controller
         return $response;
     }
 
-        /**
+    /**
     * Genera enlaces de descarga de PDF y CSV
     *
     */

@@ -94,13 +94,28 @@ class DetallePedidoController extends Controller
         ]);
 
         $detalle = DetallePedido::findOrFail($id);
+
         $nuevaCantidad = $request->input('cantidad');
         $nuevoProductoId = $request->input('producto_id');
         $pedidoId = $detalle->pedido_id;
 
-        $this->actualizarDetalle($detalle, $nuevaCantidad, $nuevoProductoId);
-        $this->actualizarStockProductoDetalle($detalle, $nuevaCantidad);
-        $this->actualizarMontoTotalPedido($pedidoId);
+        $diferenciaCantidad = $nuevaCantidad - $detalle->cantidad;
+
+        $detalle->producto_id = $nuevoProductoId;
+        $detalle->cantidad = $nuevaCantidad;
+
+        $producto = Producto::find($nuevoProductoId);
+        $precioProducto = $producto->precio;
+
+        $detalle->monto = $precioProducto * $nuevaCantidad;
+
+        $detalle->save();
+
+        $producto->stock -= $diferenciaCantidad;
+        $producto->save();
+
+        $pedido = Pedido::find($pedidoId);
+        $pedido->actualizarMontoTotal();
 
         return redirect('/pedidos')->with('success', 'El detalle del pedido se ha actualizado exitosamente.');
     }
