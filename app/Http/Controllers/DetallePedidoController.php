@@ -15,7 +15,7 @@ class DetallePedidoController extends Controller
      */
     public function index()
     {
-        //
+        //vista de detalle pedido
     }
 
 
