@@ -35,14 +35,13 @@ class PedidoController extends Controller
     }
 
      /**
-     * Muestra la página de índice de pedidos de tipo "Oficial".
+     * Muestra la página de índice de pedidos de tipo "Oficial" .
      */
     public function oficial()
     {
         $pedidos = Pedido::where('tipo_pedido', 'oficial')->get();
         return $this->renderPedidoIndex($pedidos);
     }
-
 
     /**
      * Muestra la página de creación de pedidos.
@@ -71,7 +70,7 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
-        //
+        //mostrar la vista de detalles de un pedido
     }
 
     /**
