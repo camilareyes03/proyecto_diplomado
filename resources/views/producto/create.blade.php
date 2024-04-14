@@ -3,7 +3,7 @@
 @section('title', 'Crear Producto')
 
 @section('content_header')
-    <h1>Crear Producto</h1>
+    <h1>Crear Productos</h1>
 @stop
 
 @section('content')
@@ -32,7 +32,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="categoria_id" class="form-label">Selecciona la Categoria</label>
+            <label for="categoria_id" class="form-label">Selecciona la Categoria </label>
 
             <select name="categoria_id" id="select-room" class="form-control" onchange="habilitar()">
                 <option value="nulo">Categorias: </option>

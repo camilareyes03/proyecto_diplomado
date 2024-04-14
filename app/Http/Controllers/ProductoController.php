@@ -46,10 +46,9 @@ class ProductoController extends Controller
     {
         $this->validarDatos($request);
 
-        // Crear un nuevo producto utilizando el método crearProducto
         $producto = $this->crearProducto($request);
 
-        return redirect('productos')->with('success', 'El producto se ha guardado exitosamente.');
+        return redirect('productos')->with('success', 'El producto se ha guardado.');
     }
 
     /**
