@@ -17,6 +17,7 @@ class Categoria extends Model
 
     use HasFactory;
 
+    /*Relacion con la tabla producto */
     public function producto(){
         return $this->hasMany(Producto::class,'categoria_id');
     }

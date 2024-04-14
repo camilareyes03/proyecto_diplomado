@@ -8,6 +8,8 @@ use Dompdf\Dompdf;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\View;
 
+
+//controlador de categorias
 class CategoriaController extends Controller
 {
     /**

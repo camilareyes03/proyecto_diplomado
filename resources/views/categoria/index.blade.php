@@ -22,6 +22,7 @@
             </tr>
         </thead>
         <tbody>
+
             @foreach ($categorias as $categoria)
                 <tr>
                     <td>{{ $categoria->id }}</td>
@@ -75,7 +76,7 @@
         <script>
             Swal.fire(
                 'Exito!',
-                'Tu categoria ha sido creada exitosamente',
+                'Tu categoria se ha registrado exitosamente',
                 'success'
             )
         </script>
