@@ -16,7 +16,7 @@
             <th scope="col" style="background-color: #4b545c">Nombre</th>
             <th scope="col" style="background-color: #4b545c">Referencia</th>
             <th scope="col" style="background-color: #4b545c">Link</th>
-            <th scope="col" style="background-color: #4b545c">Acciones</th>
+            <th scope="col" style="background-color: #4b545c">Opciones</th>
         </tr>
     </thead>
     <tbody>

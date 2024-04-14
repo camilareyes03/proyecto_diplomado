@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ubicacion;
 use Illuminate\Http\Request;
-
+//ubicacion controller
 class UbicacionController extends Controller
 {
     /**

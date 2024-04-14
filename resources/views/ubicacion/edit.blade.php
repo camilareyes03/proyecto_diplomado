@@ -15,7 +15,7 @@
         <div class="mapform">
             <div class="row">
                 <div class="col-6">
-                    <label for="latitud">Latitud:</label>
+                    <label for="latitud">Latitud: </label>
                     <input type="text" class="form-control" id="latitud" name="latitud" placeholder="Latitud" value="{{ old('latitud', $ubicacion->latitud) }}">
                     @error('latitud')
                     <div class="text-danger">{{ $message }}</div>
