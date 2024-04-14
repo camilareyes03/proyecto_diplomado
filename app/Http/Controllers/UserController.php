@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
+    /**
+     * Muestra una lista de los usuarios.
+     */
     public function index()
     {
         $personas = User::all();
@@ -27,7 +30,9 @@ class UserController extends Controller
         $csvRoute = route('user.csv', ['tipo' => 'cliente']);
         return view('persona.index', compact('personas', 'pdfRoute', 'csvRoute'));
     }
-
+    /**
+     * Muestra una lista de los administradores.
+     */
     public function administradores()
     {
         $personas = User::where('tipo_usuario', 'administrador')->get();
