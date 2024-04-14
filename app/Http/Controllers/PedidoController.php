@@ -320,6 +320,10 @@ class PedidoController extends Controller
         return $pdf->stream("pedido_{$id}.pdf");
     }
 
+
+    /**
+     * Descarga un archivo CSV con los detalles de un pedido. REPORTE
+     */
     public function descargarCsv($id)
     {
         $pedido = Pedido::find($id);

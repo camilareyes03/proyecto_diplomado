@@ -146,6 +146,9 @@ class ProductoController extends Controller
         return redirect('productos')->with('eliminar', 'ok');
     }
 
+    /**
+     * Esta funcion genera un PDF con la lista de productos REPORTE
+     */
     public function generarPdf()
     {
         $productos = Producto::all();
@@ -158,6 +161,9 @@ class ProductoController extends Controller
         return $dompdf->stream("Catalogo_Productos.pdf");
     }
 
+    /**
+     * Esta funcion genera un CSV con la lista de productos REPORTE
+     */
     public function generarCsv()
     {
         $productos = Producto::all();
