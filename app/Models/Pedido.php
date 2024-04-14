@@ -15,6 +15,7 @@ class Pedido extends Model
 
     use HasFactory;
 
+    /*relacion */
     public function user_cliente(){
         return $this->belongsTo(User::class,'cliente_id');
     }

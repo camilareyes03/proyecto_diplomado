@@ -24,6 +24,10 @@ class PedidoController extends Controller
         return $this->renderPedidoIndex($pedidos);
     }
 
+
+    /**
+     * Muestra la página de índice de pedidos de tipo "Proforma".
+     */
     public function proforma()
     {
         $pedidos = Pedido::where('tipo_pedido', 'proforma')->get();
