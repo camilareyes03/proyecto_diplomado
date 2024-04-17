@@ -25,6 +25,7 @@ class CategoriaControllerTest extends TestCase
     }
 
     /**
+     * @group database
      * Test 'categorias' index route when authenticated.
      *
      * @return void
@@ -59,8 +60,12 @@ class CategoriaControllerTest extends TestCase
         $response->assertViewIs('categoria.create');
     }
 
-
-
+    /**
+     * @group database
+     * Test 'categorias' edit route when authenticated.
+     *
+     * @return void
+     */
     public function testEditWhenAuthenticated()
     {
         $user = User::first();
@@ -79,6 +84,12 @@ class CategoriaControllerTest extends TestCase
         $response->assertViewIs('categoria.edit');
     }
 
+    /**
+     * @group database
+     * Test 'categorias' update route when authenticated.
+     *
+     * @return void
+     */
     public function testUpdateWhenAuthenticated()
     {
         // Get an existing user
@@ -100,7 +111,12 @@ class CategoriaControllerTest extends TestCase
         // Continue with the rest of your test...
     }
 
-
+    /**
+     * @group database
+     * Test 'categorias' delete route when authenticated.
+     *
+     * @return void
+     */
     public function testDestroyWhenAuthenticated()
     {
         // Get an existing user
@@ -110,7 +126,6 @@ class CategoriaControllerTest extends TestCase
         $categoria = Categoria::create([
             'nombre' => 'Category to delete',
             'descripcion' => 'Description for category to delete',
-
             // Add any other fields that are required to create a category
         ]);
 
