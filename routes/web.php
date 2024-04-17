@@ -39,6 +39,8 @@ Route::get('/clientes', 'App\Http\Controllers\UserController@clientes')->name('c
 Route::get('/administradores', 'App\Http\Controllers\UserController@administradores')->name('administradores.index')->middleware('auth');
 
 Route::resource('categorias', 'App\Http\Controllers\CategoriaController')->middleware('auth');
+
+
 Route::resource('productos', 'App\Http\Controllers\ProductoController')->middleware('auth');
 
 
