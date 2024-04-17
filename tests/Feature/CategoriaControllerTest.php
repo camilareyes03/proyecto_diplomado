@@ -24,6 +24,7 @@ class CategoriaControllerTest extends TestCase
     }
 
     /**
+     * @group database
      * Test 'categorias' create route when authenticated.
      *
      * @return void
