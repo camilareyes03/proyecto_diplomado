@@ -7,8 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  laravel-tests:
-
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,5 +26,46 @@ jobs:
         composer update
     - name: Generate key
       run: php artisan key:generate
+
+  test:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up PHP
+      uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with:
+        php-version: '8.1'
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('env.example', '.env');"
+    - name: Install Dependencies
+      run: |
+        composer install 
+        composer update
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       run: php artisan test --exclude-group=database
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up PHP
+      uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with:
+        php-version: '8.1'
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('env.example', '.env');"
+    - name: Install Dependencies
+      run: |
+        composer install 
+        composer update
+    - name: Generate key
+      run: php artisan key:generate
+    - name: Deploy to Production
+      run: |
+        # Deploy
